@@ -1,0 +1,1675 @@
+SQL> CREATE TABLE SALESMAN
+  2  (
+  3  SNUM VARCHAR2(6) PRIMARY KEY,
+  4  SNAME VARCHAR2(20) NOT NULL,
+  5  CITY VARCHAR2(15),
+  6  COMM NUMBER(5,2),
+  7  CONSTRAINT CHECK_SNUM_FIRST_LETTER CHECK(SUBSTR(SNUM,1,1) = 'S')
+  8  );
+
+Table created.
+
+SQL> DESC SALESMAN;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ SNUM                                      NOT NULL VARCHAR2(6)
+ SNAME                                     NOT NULL VARCHAR2(20)
+ CITY                                               VARCHAR2(15)
+ COMM                                               NUMBER(5,2)
+
+SQL> INSERT INTO SALESMAN VALUES(&SNUM,&SNAME,&CITY,&COMM);
+Enter value for snum: 'S1001'
+Enter value for sname: 'PIYUSH'
+Enter value for city: 'LONDON'
+Enter value for comm: 0.12
+old   1: INSERT INTO SALESMAN VALUES(&SNUM,&SNAME,&CITY,&COMM)
+new   1: INSERT INTO SALESMAN VALUES('S1001','PIYUSH','LONDON',0.12)
+
+1 row created.
+
+SQL> /
+Enter value for snum: 'S1002'
+Enter value for sname: 'NIRAJ'
+Enter value for city: 'SAN JOSE'
+Enter value for comm: 0.13
+old   1: INSERT INTO SALESMAN VALUES(&SNUM,&SNAME,&CITY,&COMM)
+new   1: INSERT INTO SALESMAN VALUES('S1002','NIRAJ','SAN JOSE',0.13)
+
+1 row created.
+
+SQL> /
+Enter value for snum: 'S1003'
+Enter value for sname: 'MITI'
+Enter value for city: 'LONDON'
+Enter value for comm: 0.11
+old   1: INSERT INTO SALESMAN VALUES(&SNUM,&SNAME,&CITY,&COMM)
+new   1: INSERT INTO SALESMAN VALUES('S1003','MITI','LONDON',0.11)
+
+1 row created.
+
+SQL> /
+Enter value for snum: 'S1004'
+Enter value for sname: 'RAJESH'
+Enter value for city: 'BARCELONA'
+Enter value for comm: 0.15
+old   1: INSERT INTO SALESMAN VALUES(&SNUM,&SNAME,&CITY,&COMM)
+new   1: INSERT INTO SALESMAN VALUES('S1004','RAJESH','BARCELONA',0.15)
+
+1 row created.
+
+SQL> /
+Enter value for snum: 'S1005'
+Enter value for sname: 'HARESH'
+Enter value for city: 'NEW YORK'
+Enter value for comm: 0.10
+old   1: INSERT INTO SALESMAN VALUES(&SNUM,&SNAME,&CITY,&COMM)
+new   1: INSERT INTO SALESMAN VALUES('S1005','HARESH','NEW YORK',0.10)
+
+1 row created.
+
+SQL> /
+Enter value for snum: 'S1006'
+Enter value for sname: 'RAM'
+Enter value for city: 'BOMBAY'
+Enter value for comm: 0.10
+old   1: INSERT INTO SALESMAN VALUES(&SNUM,&SNAME,&CITY,&COMM)
+new   1: INSERT INTO SALESMAN VALUES('S1006','RAM','BOMBAY',0.10)
+
+1 row created.
+
+SQL> /
+Enter value for snum: 'S1007'
+Enter value for sname: 'NEHAL'
+Enter value for city: 'DELHI'
+Enter value for comm: 0.09
+old   1: INSERT INTO SALESMAN VALUES(&SNUM,&SNAME,&CITY,&COMM)
+new   1: INSERT INTO SALESMAN VALUES('S1007','NEHAL','DELHI',0.09)
+
+1 row created.
+
+SQL> SELECT * FROM SALESMAN;
+
+SNUM   SNAME                CITY                  COMM                          
+------ -------------------- --------------- ----------                          
+S1001  PIYUSH               LONDON                 .12                          
+S1002  NIRAJ                SAN JOSE               .13                          
+S1003  MITI                 LONDON                 .11                          
+S1004  RAJESH               BARCELONA              .15                          
+S1005  HARESH               NEW YORK                .1                          
+S1006  RAM                  BOMBAY                  .1                          
+S1007  NEHAL                DELHI                  .09                          
+
+7 rows selected.
+
+SQL> CREATE TABLE CUSTOMER
+  2  (
+  3  CNUM VARCHAR2(6) PRIMARY KEY,
+  4  CNAME VARCHAR2(20) NOT NULL,
+  5  CITY VARCHAR2(15),
+  6  RATING NUMBER(5),
+  7  SNUM VARCHAR2(6),
+  8  CONSTRAINT CHECK_CNUM_FIRST_LETTER CHECK( SUBSTR(CNUM,1,1) = 'C')
+  9  );
+
+Table created.
+
+SQL> DESC CUSTOMER;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CNUM                                      NOT NULL VARCHAR2(6)
+ CNAME                                     NOT NULL VARCHAR2(20)
+ CITY                                               VARCHAR2(15)
+ RATING                                             NUMBER(5)
+ SNUM                                               VARCHAR2(6)
+
+SQL> INSERT INTO CUSTOMER VALUES(&CNUM,&CNAME,&CITY,&RATING,&SNUM);
+Enter value for cnum: 'C2001'
+Enter value for cname: 'HARDIK'
+Enter value for city: 'LONDON'
+Enter value for rating: 100
+Enter value for snum: 'S1001'
+old   1: INSERT INTO CUSTOMER VALUES(&CNUM,&CNAME,&CITY,&RATING,&SNUM)
+new   1: INSERT INTO CUSTOMER VALUES('C2001','HARDIK','LONDON',100,'S1001')
+
+1 row created.
+
+SQL> /
+Enter value for cnum: 'C2002'
+Enter value for cname: 'GEETA'
+Enter value for city: 'ROME'
+Enter value for rating: 200
+Enter value for snum: 'S1003'
+old   1: INSERT INTO CUSTOMER VALUES(&CNUM,&CNAME,&CITY,&RATING,&SNUM)
+new   1: INSERT INTO CUSTOMER VALUES('C2002','GEETA','ROME',200,'S1003')
+
+1 row created.
+
+SQL> /
+Enter value for cnum: 'C2003'
+Enter value for cname: 'KAVISH'
+Enter value for city: 'SAN JOSE'
+Enter value for rating: 200
+Enter value for snum: 'S1002'
+old   1: INSERT INTO CUSTOMER VALUES(&CNUM,&CNAME,&CITY,&RATING,&SNUM)
+new   1: INSERT INTO CUSTOMER VALUES('C2003','KAVISH','SAN JOSE',200,'S1002')
+
+1 row created.
+
+SQL> /
+Enter value for cnum: 'C2004'
+Enter value for cname: 'DHRUV'
+Enter value for city: 'BERLIN'
+Enter value for rating: 300
+Enter value for snum: 'S1002'
+old   1: INSERT INTO CUSTOMER VALUES(&CNUM,&CNAME,&CITY,&RATING,&SNUM)
+new   1: INSERT INTO CUSTOMER VALUES('C2004','DHRUV','BERLIN',300,'S1002')
+
+1 row created.
+
+SQL> /
+Enter value for cnum: 'C2005'
+Enter value for cname: 'PRATHAM'
+Enter value for city: 'LONDON'
+Enter value for rating: 100
+Enter value for snum: 'S1001'
+old   1: INSERT INTO CUSTOMER VALUES(&CNUM,&CNAME,&CITY,&RATING,&SNUM)
+new   1: INSERT INTO CUSTOMER VALUES('C2005','PRATHAM','LONDON',100,'S1001')
+
+1 row created.
+
+SQL> /
+Enter value for cnum: 'C2006'
+Enter value for cname: 'VYOMESH'
+Enter value for city: 'SAN JOSE'
+Enter value for rating: 300
+Enter value for snum: 'S1007'
+old   1: INSERT INTO CUSTOMER VALUES(&CNUM,&CNAME,&CITY,&RATING,&SNUM)
+new   1: INSERT INTO CUSTOMER VALUES('C2006','VYOMESH','SAN JOSE',300,'S1007')
+
+1 row created.
+
+SQL> /
+Enter value for cnum: 'C2007'
+Enter value for cname: 'KIRIT'
+Enter value for city: 'ROME'
+Enter value for rating: 100
+Enter value for snum: 'S1004'
+old   1: INSERT INTO CUSTOMER VALUES(&CNUM,&CNAME,&CITY,&RATING,&SNUM)
+new   1: INSERT INTO CUSTOMER VALUES('C2007','KIRIT','ROME',100,'S1004')
+
+1 row created.
+
+SQL> SELECT * FROM CUSTOMER;
+
+CNUM   CNAME                CITY                RATING SNUM                     
+------ -------------------- --------------- ---------- ------                   
+C2001  HARDIK               LONDON                 100 S1001                    
+C2002  GEETA                ROME                   200 S1003                    
+C2003  KAVISH               SAN JOSE               200 S1002                    
+C2004  DHRUV                BERLIN                 300 S1002                    
+C2005  PRATHAM              LONDON                 100 S1001                    
+C2006  VYOMESH              SAN JOSE               300 S1007                    
+C2007  KIRIT                ROME                   100 S1004                    
+
+7 rows selected.
+
+SQL> CREATE TABLE ORDER
+  2  (
+  3  ONUM VARCHAR2(6) PRIMARY KEY,
+  4  AMT NUMBER(10,2) NOT NULL,
+  5  ODATE DATE,
+  6  CNUM VARCHAR2(6),
+  7  SNUM VARCHAR2(6),
+  8  CONSTRAINT CHECK_ONUM_FIRST_LETTER CHECK( SUBSTR(ONUM,1,1) = 'O')
+  9  );
+CREATE TABLE ORDER
+             *
+ERROR at line 1:
+ORA-00903: invalid table name 
+
+
+SQL> CREATE TABLE "ORDER"
+  2  (
+  3  ONUM VARCHAR2(6) PRIMARY KEY,
+  4  AMT NUMBER(10,2) NOT NULL,
+  5  ODATE DATE,
+  6  CNUM VARCHAR2(6),
+  7  SNUM VARCHAR2(6),
+  8  CONSTRAINT CHECK_ONUM_FIRST_LETTER CHECK( SUBSTR(ONUM,1,1) = 'O')
+  9  );
+
+Table created.
+
+SQL> DESC ORDERS;
+ERROR:
+ORA-04043: object ORDERS does not exist 
+
+
+SQL> DESC "ORDER";
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ONUM                                      NOT NULL VARCHAR2(6)
+ AMT                                       NOT NULL NUMBER(10,2)
+ ODATE                                              DATE
+ CNUM                                               VARCHAR2(6)
+ SNUM                                               VARCHAR2(6)
+
+SQL> INSERT INTO "ORDER" VALUES(&ONUM,&AMT,&ODATE,&CNUM,&SNUM);
+Enter value for onum: 'O3001'
+Enter value for amt: 18.69
+Enter value for odate: '10-Mar-90'
+Enter value for cnum: 'C2008'
+Enter value for snum: 'S1007'
+old   1: INSERT INTO "ORDER" VALUES(&ONUM,&AMT,&ODATE,&CNUM,&SNUM)
+new   1: INSERT INTO "ORDER" VALUES('O3001',18.69,'10-Mar-90','C2008','S1007')
+
+1 row created.
+
+SQL> /
+Enter value for onum: 'O3003'
+Enter value for amt: 767.19
+Enter value for odate: '10-Mar-90'
+Enter value for cnum: 'C2001'
+Enter value for snum: 'S1001'
+old   1: INSERT INTO "ORDER" VALUES(&ONUM,&AMT,&ODATE,&CNUM,&SNUM)
+new   1: INSERT INTO "ORDER" VALUES('O3003',767.19,'10-Mar-90','C2001','S1001')
+
+1 row created.
+
+SQL> /
+Enter value for onum: 'O3002'
+Enter value for amt: 1900.10
+Enter value for odate: '03-Oct-90'
+Enter value for cnum: 'C2007'
+Enter value for snum: 'S1004'
+old   1: INSERT INTO "ORDER" VALUES(&ONUM,&AMT,&ODATE,&CNUM,&SNUM)
+new   1: INSERT INTO "ORDER" VALUES('O3002',1900.10,'03-Oct-90','C2007','S1004')
+
+1 row created.
+
+SQL> /
+Enter value for onum: 'O3005'
+Enter value for amt: 5160.45
+Enter value for odate: '04-Oct-90'
+Enter value for cnum: 'C2003'
+Enter value for snum: 'S1002'
+old   1: INSERT INTO "ORDER" VALUES(&ONUM,&AMT,&ODATE,&CNUM,&SNUM)
+new   1: INSERT INTO "ORDER" VALUES('O3005',5160.45,'04-Oct-90','C2003','S1002')
+
+1 row created.
+
+SQL> /
+Enter value for onum: 'O3006'
+Enter value for amt: 1098.16
+Enter value for odate: '10-Mar_90'
+Enter value for cnum: 'C2008'
+Enter value for snum: 'S1007'
+old   1: INSERT INTO "ORDER" VALUES(&ONUM,&AMT,&ODATE,&CNUM,&SNUM)
+new   1: INSERT INTO "ORDER" VALUES('O3006',1098.16,'10-Mar_90','C2008','S1007')
+
+1 row created.
+
+SQL> /
+Enter value for onum: 'O3009'
+Enter value for amt: 1713.23
+Enter value for odate: '10-April-90'
+Enter value for cnum: 'C2002'
+Enter value for snum: 'S1003'
+old   1: INSERT INTO "ORDER" VALUES(&ONUM,&AMT,&ODATE,&CNUM,&SNUM)
+new   1: INSERT INTO "ORDER" VALUES('O3009',1713.23,'10-April-90','C2002','S1003')
+
+1 row created.
+
+SQL> /
+Enter value for onum:  'O3007'
+Enter value for amt: 75.75
+Enter value for odate: '10-April-90'
+Enter value for cnum: 'C2004'
+Enter value for snum: 'S1002'
+old   1: INSERT INTO "ORDER" VALUES(&ONUM,&AMT,&ODATE,&CNUM,&SNUM)
+new   1: INSERT INTO "ORDER" VALUES( 'O3007',75.75,'10-April-90','C2004','S1002')
+
+1 row created.
+
+SQL> /
+Enter value for onum: 'O3008'
+Enter value for amt: 4723.00
+Enter value for odate: '10-May-90'
+Enter value for cnum: 'C2006'
+Enter value for snum: 'S1001'
+old   1: INSERT INTO "ORDER" VALUES(&ONUM,&AMT,&ODATE,&CNUM,&SNUM)
+new   1: INSERT INTO "ORDER" VALUES('O3008',4723.00,'10-May-90','C2006','S1001')
+
+1 row created.
+
+SQL> /
+Enter value for onum: 'O3010'
+Enter value for amt: 1309.95
+Enter value for odate: '10-May-90'
+Enter value for cnum: 'C2004'
+Enter value for snum: 'S1002'
+old   1: INSERT INTO "ORDER" VALUES(&ONUM,&AMT,&ODATE,&CNUM,&SNUM)
+new   1: INSERT INTO "ORDER" VALUES('O3010',1309.95,'10-May-90','C2004','S1002')
+
+1 row created.
+
+SQL> /
+Enter value for onum: 'O3011'
+Enter value for amt: 9891.88
+Enter value for odate: '10-June-90'
+Enter value for cnum: 'C2006'
+Enter value for snum: 'S1001'
+old   1: INSERT INTO "ORDER" VALUES(&ONUM,&AMT,&ODATE,&CNUM,&SNUM)
+new   1: INSERT INTO "ORDER" VALUES('O3011',9891.88,'10-June-90','C2006','S1001')
+
+1 row created.
+
+SQL> SELECT * FROM "ORDER";
+
+ONUM          AMT ODATE     CNUM   SNUM                                         
+------ ---------- --------- ------ ------                                       
+O3001       18.69 10-MAR-90 C2008  S1007                                        
+O3003      767.19 10-MAR-90 C2001  S1001                                        
+O3002      1900.1 03-OCT-90 C2007  S1004                                        
+O3005     5160.45 04-OCT-90 C2003  S1002                                        
+O3006     1098.16 10-MAR-90 C2008  S1007                                        
+O3009     1713.23 10-APR-90 C2002  S1003                                        
+O3007       75.75 10-APR-90 C2004  S1002                                        
+O3008        4723 10-MAY-90 C2006  S1001                                        
+O3010     1309.95 10-MAY-90 C2004  S1002                                        
+O3011     9891.88 10-JUN-90 C2006  S1001                                        
+
+10 rows selected.
+
+SQL> ---Display all the information of salesmen.---
+SQL> SELECT * FROM SALESMAN;
+
+SNUM   SNAME                CITY                  COMM                          
+------ -------------------- --------------- ----------                          
+S1001  PIYUSH               LONDON                 .12                          
+S1002  NIRAJ                SAN JOSE               .13                          
+S1003  MITI                 LONDON                 .11                          
+S1004  RAJESH               BARCELONA              .15                          
+S1005  HARESH               NEW YORK                .1                          
+S1006  RAM                  BOMBAY                  .1                          
+S1007  NEHAL                DELHI                  .09                          
+
+7 rows selected.
+
+SQL> ---Display snum,sname,city from salesmen table---
+SQL> 
+SQL> SELECT SNUM,SNAME,CITY
+  2  FROM SALESMAN;
+
+SNUM   SNAME                CITY                                                
+------ -------------------- ---------------                                     
+S1001  PIYUSH               LONDON                                              
+S1002  NIRAJ                SAN JOSE                                            
+S1003  MITI                 LONDON                                              
+S1004  RAJESH               BARCELONA                                           
+S1005  HARESH               NEW YORK                                            
+S1006  RAM                  BOMBAY                                              
+S1007  NEHAL                DELHI                                               
+
+7 rows selected.
+
+SQL> ---Display odate,snum,onum and amt from orders---
+SQL> 
+SQL> SELECT ODATE,SNUM,ONUM,AMT
+  2  FROM "ORDER";
+
+ODATE     SNUM   ONUM          AMT                                              
+--------- ------ ------ ----------                                              
+10-MAR-90 S1007  O3001       18.69                                              
+10-MAR-90 S1001  O3003      767.19                                              
+03-OCT-90 S1004  O3002      1900.1                                              
+04-OCT-90 S1002  O3005     5160.45                                              
+10-MAR-90 S1007  O3006     1098.16                                              
+10-APR-90 S1003  O3009     1713.23                                              
+10-APR-90 S1002  O3007       75.75                                              
+10-MAY-90 S1001  O3008        4723                                              
+10-MAY-90 S1002  O3010     1309.95                                              
+10-JUN-90 S1001  O3011     9891.88                                              
+
+10 rows selected.
+
+SQL> ---Display the information of orders without duplication---
+SQL> 
+SQL> SELECT DISTINCT ONUM, AMT, ODATE, CNUM, SNUM
+  2  FROM "ORDER";
+
+ONUM          AMT ODATE     CNUM   SNUM                                         
+------ ---------- --------- ------ ------                                       
+O3006     1098.16 10-MAR-90 C2008  S1007                                        
+O3009     1713.23 10-APR-90 C2002  S1003                                        
+O3007       75.75 10-APR-90 C2004  S1002                                        
+O3001       18.69 10-MAR-90 C2008  S1007                                        
+O3002      1900.1 03-OCT-90 C2007  S1004                                        
+O3010     1309.95 10-MAY-90 C2004  S1002                                        
+O3003      767.19 10-MAR-90 C2001  S1001                                        
+O3005     5160.45 04-OCT-90 C2003  S1002                                        
+O3008        4723 10-MAY-90 C2006  S1001                                        
+O3011     9891.88 10-JUN-90 C2006  S1001                                        
+
+10 rows selected.
+
+SQL> ---List of sname, city from salesmen where city is ‘LONDON’.---
+SQL> 
+SQL> SELECT SNAME
+  2  FROM SALESMAN
+  3  WHERE CITY = 'LONDON';
+
+SNAME                                                                           
+--------------------                                                            
+PIYUSH                                                                          
+MITI                                                                            
+
+SQL> ---List all records of customers where rating is equal to 100.---
+SQL> 
+SQL> SELECT *
+  2  FROM CUSTOMER
+  3  WHERE RATING = 100;
+
+CNUM   CNAME                CITY                RATING SNUM                     
+------ -------------------- --------------- ---------- ------                   
+C2001  HARDIK               LONDON                 100 S1001                    
+C2005  PRATHAM              LONDON                 100 S1001                    
+C2007  KIRIT                ROME                   100 S1004                    
+
+SQL> ---Write a select command that produces the order number,amount and date for all rows in the order table---
+SQL> 
+SQL> SELECT ONUM,AMT,ODATE
+  2  FROM "ORDER";
+
+ONUM          AMT ODATE                                                         
+------ ---------- ---------                                                     
+O3001       18.69 10-MAR-90                                                     
+O3003      767.19 10-MAR-90                                                     
+O3002      1900.1 03-OCT-90                                                     
+O3005     5160.45 04-OCT-90                                                     
+O3006     1098.16 10-MAR-90                                                     
+O3009     1713.23 10-APR-90                                                     
+O3007       75.75 10-APR-90                                                     
+O3008        4723 10-MAY-90                                                     
+O3010     1309.95 10-MAY-90                                                     
+O3011     9891.88 10-JUN-90                                                     
+
+10 rows selected.
+
+SQL> ---Produces all rows from the customer table for which the salesperson’s number is S1001.---
+SQL> 
+SQL> SELECT *
+  2  FROM CUSTOMER
+  3  WHERE SNUM = 'S1001';
+
+CNUM   CNAME                CITY                RATING SNUM                     
+------ -------------------- --------------- ---------- ------                   
+C2001  HARDIK               LONDON                 100 S1001                    
+C2005  PRATHAM              LONDON                 100 S1001                    
+
+SQL> ---Display the salesperson table with the column in the following order: city,sname,snum,comm---
+SQL> 
+SQL> SELECT *
+  2  FROM SALESMAN
+  3  ;
+
+SNUM   SNAME                CITY                  COMM                          
+------ -------------------- --------------- ----------                          
+S1001  PIYUSH               LONDON                 .12                          
+S1002  NIRAJ                SAN JOSE               .13                          
+S1003  MITI                 LONDON                 .11                          
+S1004  RAJESH               BARCELONA              .15                          
+S1005  HARESH               NEW YORK                .1                          
+S1006  RAM                  BOMBAY                  .1                          
+S1007  NEHAL                DELHI                  .09                          
+
+7 rows selected.
+
+SQL> SELECT CITY,SNAME,SNUM,COMM
+  2  FROM SALESMAN;
+
+CITY            SNAME                SNUM         COMM                          
+--------------- -------------------- ------ ----------                          
+LONDON          PIYUSH               S1001         .12                          
+SAN JOSE        NIRAJ                S1002         .13                          
+LONDON          MITI                 S1003         .11                          
+BARCELONA       RAJESH               S1004         .15                          
+NEW YORK        HARESH               S1005          .1                          
+BOMBAY          RAM                  S1006          .1                          
+DELHI           NEHAL                S1007         .09                          
+
+7 rows selected.
+
+SQL> ---Write a select command that produces the rating followed by the name of each customer in SAN JOSE---
+SQL> 
+SQL> SELECT * FROM CUSTOMER;
+
+CNUM   CNAME                CITY                RATING SNUM                     
+------ -------------------- --------------- ---------- ------                   
+C2001  HARDIK               LONDON                 100 S1001                    
+C2002  GEETA                ROME                   200 S1003                    
+C2003  KAVISH               SAN JOSE               200 S1002                    
+C2004  DHRUV                BERLIN                 300 S1002                    
+C2005  PRATHAM              LONDON                 100 S1001                    
+C2006  VYOMESH              SAN JOSE               300 S1007                    
+C2007  KIRIT                ROME                   100 S1004                    
+
+7 rows selected.
+
+SQL> SELECT RATING,CITY
+  2  FROM CUSTOMER
+  3  WHERE CITY = 'SAN JOSE';
+
+    RATING CITY                                                                 
+---------- ---------------                                                      
+       200 SAN JOSE                                                             
+       300 SAN JOSE                                                             
+
+SQL> ---Display SNUM values of all salesmen without any repeat.---
+SQL> 
+SQL> SELECT * FROM SALESMAN;
+
+SNUM   SNAME                CITY                  COMM                          
+------ -------------------- --------------- ----------                          
+S1001  PIYUSH               LONDON                 .12                          
+S1002  NIRAJ                SAN JOSE               .13                          
+S1003  MITI                 LONDON                 .11                          
+S1004  RAJESH               BARCELONA              .15                          
+S1005  HARESH               NEW YORK                .1                          
+S1006  RAM                  BOMBAY                  .1                          
+S1007  NEHAL                DELHI                  .09                          
+
+7 rows selected.
+
+SQL> SELECT DISTINCT SNUM
+  2  FROM SALESMAN;
+
+SNUM                                                                            
+------                                                                          
+S1001                                                                           
+S1002                                                                           
+S1003                                                                           
+S1004                                                                           
+S1005                                                                           
+S1006                                                                           
+S1007                                                                           
+
+7 rows selected.
+
+SQL> 
+SQL> --OPERATORS--
+SQL> ---List all customers with a rating above 200.---
+SQL> 
+SQL> SELECT *
+  2  FROM CUSTOMER
+  3  WHERE RATING > 200;
+
+CNUM   CNAME                CITY                RATING SNUM                     
+------ -------------------- --------------- ---------- ------                   
+C2004  DHRUV                BERLIN                 300 S1002                    
+C2006  VYOMESH              SAN JOSE               300 S1007                    
+
+SQL> ---List all customers in SAN JOSE who have a rating above 200---
+SQL> 
+SQL> SELECT * FROM CUSTOMER;
+
+CNUM   CNAME                CITY                RATING SNUM                     
+------ -------------------- --------------- ---------- ------                   
+C2001  HARDIK               LONDON                 100 S1001                    
+C2002  GEETA                ROME                   200 S1003                    
+C2003  KAVISH               SAN JOSE               200 S1002                    
+C2004  DHRUV                BERLIN                 300 S1002                    
+C2005  PRATHAM              LONDON                 100 S1001                    
+C2006  VYOMESH              SAN JOSE               300 S1007                    
+C2007  KIRIT                ROME                   100 S1004                    
+
+7 rows selected.
+
+SQL> SELECT *
+  2  FROM CUSTOMER
+  3  WHERE JOB = 'SAN JOSE' AND RATING = 200;
+WHERE JOB = 'SAN JOSE' AND RATING = 200
+      *
+ERROR at line 3:
+ORA-00904: "JOB": invalid identifier 
+
+
+SQL> SELECT *
+  2  FROM CUSTOMER
+  3  WHERE CITY = 'SAN JOSE' AND RATING = 200;
+
+CNUM   CNAME                CITY                RATING SNUM                     
+------ -------------------- --------------- ---------- ------                   
+C2003  KAVISH               SAN JOSE               200 S1002                    
+
+SQL> 
+SQL> ---List all customers who were either located in SAN JOSE or had a rating above 200---
+SQL> 
+SQL> SELECT *
+  2  FROM CUSTOMER
+  3  WHERE CITY = 'SAN JOSE' OR RATING = 200;
+
+CNUM   CNAME                CITY                RATING SNUM                     
+------ -------------------- --------------- ---------- ------                   
+C2002  GEETA                ROME                   200 S1003                    
+C2003  KAVISH               SAN JOSE               200 S1002                    
+C2006  VYOMESH              SAN JOSE               300 S1007                    
+
+SQL> ---ist of all customers who were either located in SAN JOSE or not rating above 200.---
+SQL> 
+SQL> SELECT *
+  2  FROM CUSTOMER
+  3  WHERE CITY = 'SAN JOSE' OR RATING < 200;
+
+CNUM   CNAME                CITY                RATING SNUM                     
+------ -------------------- --------------- ---------- ------                   
+C2001  HARDIK               LONDON                 100 S1001                    
+C2003  KAVISH               SAN JOSE               200 S1002                    
+C2005  PRATHAM              LONDON                 100 S1001                    
+C2006  VYOMESH              SAN JOSE               300 S1007                    
+C2007  KIRIT                ROME                   100 S1004                    
+
+SQL> ---List of all customers who were not located in SAN JOSE or rating is not above 200.---
+SQL> 
+SQL> SELECT *
+  2  FROM CUSTOMER
+  3  WHERE CITY != 'SAN JOSE' OR RATING < 200;
+
+CNUM   CNAME                CITY                RATING SNUM                     
+------ -------------------- --------------- ---------- ------                   
+C2001  HARDIK               LONDON                 100 S1001                    
+C2002  GEETA                ROME                   200 S1003                    
+C2004  DHRUV                BERLIN                 300 S1002                    
+C2005  PRATHAM              LONDON                 100 S1001                    
+C2007  KIRIT                ROME                   100 S1004                    
+
+SQL> 
+SQL> ---Write a query that will give you all orders for more than $1000---
+SQL> 
+SQL> SELECT *
+  2  FROM "ORDER";
+
+ONUM          AMT ODATE     CNUM   SNUM                                         
+------ ---------- --------- ------ ------                                       
+O3001       18.69 10-MAR-90 C2008  S1007                                        
+O3003      767.19 10-MAR-90 C2001  S1001                                        
+O3002      1900.1 03-OCT-90 C2007  S1004                                        
+O3005     5160.45 04-OCT-90 C2003  S1002                                        
+O3006     1098.16 10-MAR-90 C2008  S1007                                        
+O3009     1713.23 10-APR-90 C2002  S1003                                        
+O3007       75.75 10-APR-90 C2004  S1002                                        
+O3008        4723 10-MAY-90 C2006  S1001                                        
+O3010     1309.95 10-MAY-90 C2004  S1002                                        
+O3011     9891.88 10-JUN-90 C2006  S1001                                        
+
+10 rows selected.
+
+SQL> SELECT *
+  2  FROM "ORDER"
+  3  WHERE AMT > 1000;
+
+ONUM          AMT ODATE     CNUM   SNUM                                         
+------ ---------- --------- ------ ------                                       
+O3002      1900.1 03-OCT-90 C2007  S1004                                        
+O3005     5160.45 04-OCT-90 C2003  S1002                                        
+O3006     1098.16 10-MAR-90 C2008  S1007                                        
+O3009     1713.23 10-APR-90 C2002  S1003                                        
+O3008        4723 10-MAY-90 C2006  S1001                                        
+O3010     1309.95 10-MAY-90 C2004  S1002                                        
+O3011     9891.88 10-JUN-90 C2006  S1001                                        
+
+7 rows selected.
+
+SQL> ---Write a query that will give you the names and cities of all salesmen in LONDON with a commission above 0.10.---
+SQL> 
+SQL> SELECT * FROM SALESMAN;
+
+SNUM   SNAME                CITY                  COMM                          
+------ -------------------- --------------- ----------                          
+S1001  PIYUSH               LONDON                 .12                          
+S1002  NIRAJ                SAN JOSE               .13                          
+S1003  MITI                 LONDON                 .11                          
+S1004  RAJESH               BARCELONA              .15                          
+S1005  HARESH               NEW YORK                .1                          
+S1006  RAM                  BOMBAY                  .1                          
+S1007  NEHAL                DELHI                  .09                          
+
+7 rows selected.
+
+SQL> SELECT SNAME,CITY
+  2  FROM SALESMAN
+  3  WHERE COMM > 0.10;
+
+SNAME                CITY                                                       
+-------------------- ---------------                                            
+PIYUSH               LONDON                                                     
+NIRAJ                SAN JOSE                                                   
+MITI                 LONDON                                                     
+RAJESH               BARCELONA                                                  
+
+SQL> ---Write a query on the customers table whose output will exclude all customers with a rating <= 100 and they are located in ROME---
+SQL> 
+SQL> SELECT * FROM CUSTOMER;
+
+CNUM   CNAME                CITY                RATING SNUM                     
+------ -------------------- --------------- ---------- ------                   
+C2001  HARDIK               LONDON                 100 S1001                    
+C2002  GEETA                ROME                   200 S1003                    
+C2003  KAVISH               SAN JOSE               200 S1002                    
+C2004  DHRUV                BERLIN                 300 S1002                    
+C2005  PRATHAM              LONDON                 100 S1001                    
+C2006  VYOMESH              SAN JOSE               300 S1007                    
+C2007  KIRIT                ROME                   100 S1004                    
+
+7 rows selected.
+
+SQL> SELECT *
+  2  FROM CUSTOMER
+  3  WHERE RATING <= 100
+  4  AND CITY = ROME;
+AND CITY = ROME
+           *
+ERROR at line 4:
+ORA-00904: "ROME": invalid identifier 
+
+
+SQL> SELECT *
+  2  FROM CUSTOMER
+  3  WHERE RATING <= 100
+  4  AND CITY = 'ROME';
+
+CNUM   CNAME                CITY                RATING SNUM                     
+------ -------------------- --------------- ---------- ------                   
+C2007  KIRIT                ROME                   100 S1004                    
+
+SQL> 
+SQL> --SPECIAL OPERATORS--
+SQL> ---Display all salesmen that were located in either BARCELONA or LONDON(use IN keyword).---
+SQL> 
+SQL> SELECT *
+  2  FROM SALESMAN
+  3  WHERE CITY IN ('BARCELONA','LONDON');
+
+SNUM   SNAME                CITY                  COMM                          
+------ -------------------- --------------- ----------                          
+S1001  PIYUSH               LONDON                 .12                          
+S1003  MITI                 LONDON                 .11                          
+S1004  RAJESH               BARCELONA              .15                          
+
+SQL> ---Find all customers matched with salesmen S1001,S1007 and S1004---
+SQL> 
+SQL> SELECT * FROM CUSTOMER;
+
+CNUM   CNAME                CITY                RATING SNUM                     
+------ -------------------- --------------- ---------- ------                   
+C2001  HARDIK               LONDON                 100 S1001                    
+C2002  GEETA                ROME                   200 S1003                    
+C2003  KAVISH               SAN JOSE               200 S1002                    
+C2004  DHRUV                BERLIN                 300 S1002                    
+C2005  PRATHAM              LONDON                 100 S1001                    
+C2006  VYOMESH              SAN JOSE               300 S1007                    
+C2007  KIRIT                ROME                   100 S1004                    
+
+7 rows selected.
+
+SQL> SELECT *
+  2  FROM SALESMAN
+  3  WHERE SNUM IN ('S1001','S1007','S1004');
+
+SNUM   SNAME                CITY                  COMM                          
+------ -------------------- --------------- ----------                          
+S1001  PIYUSH               LONDON                 .12                          
+S1004  RAJESH               BARCELONA              .15                          
+S1007  NEHAL                DELHI                  .09                          
+
+SQL> ---S1004.
+SQL> ---Display all salesmen with commission between 0.10 and 0.12---
+SQL> 
+SQL> SELECT *
+  2  FROM SALESMAN
+  3  WHERE COMM BETWEEN 0.14 AND 0.12;
+
+no rows selected
+
+SQL> ---Select all customers whose names fall in a ‘A’ and ‘G’ alphabetical---
+SQL> 
+SQL> SELECT * FROM CUSTOMER;
+
+CNUM   CNAME                CITY                RATING SNUM                     
+------ -------------------- --------------- ---------- ------                   
+C2001  HARDIK               LONDON                 100 S1001                    
+C2002  GEETA                ROME                   200 S1003                    
+C2003  KAVISH               SAN JOSE               200 S1002                    
+C2004  DHRUV                BERLIN                 300 S1002                    
+C2005  PRATHAM              LONDON                 100 S1001                    
+C2006  VYOMESH              SAN JOSE               300 S1007                    
+C2007  KIRIT                ROME                   100 S1004                    
+
+7 rows selected.
+
+SQL> SELECT *
+  2  FROM CUSTOMER
+  3  WHERE (SUBSTR(CNAME,1,1) IN ('A','G'));
+
+CNUM   CNAME                CITY                RATING SNUM                     
+------ -------------------- --------------- ---------- ------                   
+C2002  GEETA                ROME                   200 S1003                    
+
+SQL> 
+SQL> --LIKE OPERATORS--
+SQL> ---List all the customers whose names begin with ‘G’.---
+SQL> 
+SQL> SELECT *
+  2  FROM CUSTOMER
+  3  WHERE CNAME LIKE 'G%';
+
+CNUM   CNAME                CITY                RATING SNUM                     
+------ -------------------- --------------- ---------- ------                   
+C2002  GEETA                ROME                   200 S1003                    
+
+SQL> 
+SQL> ---List all salesmen whose sname start with letter ‘P’ and end letter is ‘H’.---
+SQL> SELECT *
+  2  FROM SALESMAN
+  3  WHERE SNAME LIKE 'P%' AND SNAME LIKE '%H';
+
+SNUM   SNAME                CITY                  COMM                          
+------ -------------------- --------------- ----------                          
+S1001  PIYUSH               LONDON                 .12                          
+
+SQL> ---NULL OPERATOR---
+SQL> ---Find all records in customer table with NULL values in the city column---
+SQL> 
+SQL> SELECT *
+  2  FROM CUSTOMER
+  3  WHERE CITY IS NULL;
+
+no rows selected
+
+SQL> 
+SQL> ---Write a two queries that will produce all orders taken on October 3rd or 4th ,1990---
+SQL> 
+SQL> SELECT * FROM "ORDER";
+
+ONUM          AMT ODATE     CNUM   SNUM                                         
+------ ---------- --------- ------ ------                                       
+O3001       18.69 10-MAR-90 C2008  S1007                                        
+O3003      767.19 10-MAR-90 C2001  S1001                                        
+O3002      1900.1 03-OCT-90 C2007  S1004                                        
+O3005     5160.45 04-OCT-90 C2003  S1002                                        
+O3006     1098.16 10-MAR-90 C2008  S1007                                        
+O3009     1713.23 10-APR-90 C2002  S1003                                        
+O3007       75.75 10-APR-90 C2004  S1002                                        
+O3008        4723 10-MAY-90 C2006  S1001                                        
+O3010     1309.95 10-MAY-90 C2004  S1002                                        
+O3011     9891.88 10-JUN-90 C2006  S1001                                        
+
+10 rows selected.
+
+SQL> SELECT *
+  2  FROM "ORDER"
+  3  WHERE ODATE IN('03-OCT-90','04-OCT-90');
+
+ONUM          AMT ODATE     CNUM   SNUM                                         
+------ ---------- --------- ------ ------                                       
+O3002      1900.1 03-OCT-90 C2007  S1004                                        
+O3005     5160.45 04-OCT-90 C2003  S1002                                        
+
+SQL> --BETWEEN--
+SQL> SELECT *
+  2  FROM "ORDER"
+  3  WHERE ODATE BETWEEN 03-OCT-90 AND 04-OCT-90;
+WHERE ODATE BETWEEN 03-OCT-90 AND 04-OCT-90
+                                     *
+ERROR at line 3:
+ORA-00904: "OCT": invalid identifier 
+
+
+SQL> SELECT *
+  2  FROM "ORDER"
+  3  WHERE ODATE BETWEEN '03-OCT-90' AND '04-OCT-90';
+
+ONUM          AMT ODATE     CNUM   SNUM                                         
+------ ---------- --------- ------ ------                                       
+O3002      1900.1 03-OCT-90 C2007  S1004                                        
+O3005     5160.45 04-OCT-90 C2003  S1002                                        
+
+SQL> 
+SQL> ---Write a query that selects all of the customers matched with S1001 and S1002.---
+SQL> SELECT *
+  2  FROM CUSTOMER
+  3  WHERE SNUM IN('S1001','S1002');
+
+CNUM   CNAME                CITY                RATING SNUM                     
+------ -------------------- --------------- ---------- ------                   
+C2001  HARDIK               LONDON                 100 S1001                    
+C2003  KAVISH               SAN JOSE               200 S1002                    
+C2004  DHRUV                BERLIN                 300 S1002                    
+C2005  PRATHAM              LONDON                 100 S1001                    
+
+SQL> ---Write a query that will produce all of the customers whose names begin with a letter from A to H.---
+SQL> 
+SQL> SELECT *
+  2  FROM CUSTOMER
+  3  WHERE (SUBSTR(CNAME,1,1) BETWEEN 'A' AND 'H');
+
+CNUM   CNAME                CITY                RATING SNUM                     
+------ -------------------- --------------- ---------- ------                   
+C2001  HARDIK               LONDON                 100 S1001                    
+C2002  GEETA                ROME                   200 S1003                    
+C2004  DHRUV                BERLIN                 300 S1002                    
+
+SQL> 
+SQL> ---Write a query that selects all customers whose names begin with ‘C’.---
+SQL> 
+SQL> SELECT *
+  2  FROM CUSTOMER
+  3  WHERE SUBSTR(CNAME,1,1) IN 'C';
+
+no rows selected
+
+SQL> 
+SQL> ---Write a query that selects all orders without ZEROS or NULLS in amt field..---
+SQL> 
+SQL> SELECT * FROM "ORDER";
+
+ONUM          AMT ODATE     CNUM   SNUM                                         
+------ ---------- --------- ------ ------                                       
+O3001       18.69 10-MAR-90 C2008  S1007                                        
+O3003      767.19 10-MAR-90 C2001  S1001                                        
+O3002      1900.1 03-OCT-90 C2007  S1004                                        
+O3005     5160.45 04-OCT-90 C2003  S1002                                        
+O3006     1098.16 10-MAR-90 C2008  S1007                                        
+O3009     1713.23 10-APR-90 C2002  S1003                                        
+O3007       75.75 10-APR-90 C2004  S1002                                        
+O3008        4723 10-MAY-90 C2006  S1001                                        
+O3010     1309.95 10-MAY-90 C2004  S1002                                        
+O3011     9891.88 10-JUN-90 C2006  S1001                                        
+
+10 rows selected.
+
+SQL> SELECT *
+  2  FROM "ORDER"
+  3  WHERE AMT IS NOT NULL;
+
+ONUM          AMT ODATE     CNUM   SNUM                                         
+------ ---------- --------- ------ ------                                       
+O3001       18.69 10-MAR-90 C2008  S1007                                        
+O3003      767.19 10-MAR-90 C2001  S1001                                        
+O3002      1900.1 03-OCT-90 C2007  S1004                                        
+O3005     5160.45 04-OCT-90 C2003  S1002                                        
+O3006     1098.16 10-MAR-90 C2008  S1007                                        
+O3009     1713.23 10-APR-90 C2002  S1003                                        
+O3007       75.75 10-APR-90 C2004  S1002                                        
+O3008        4723 10-MAY-90 C2006  S1001                                        
+O3010     1309.95 10-MAY-90 C2004  S1002                                        
+O3011     9891.88 10-JUN-90 C2006  S1001                                        
+
+10 rows selected.
+
+SQL> SELECT *
+  2  FROM "ORDER"
+  3  WHERE AMT IS NOT NULL AND AMT != 0;
+
+ONUM          AMT ODATE     CNUM   SNUM                                         
+------ ---------- --------- ------ ------                                       
+O3001       18.69 10-MAR-90 C2008  S1007                                        
+O3003      767.19 10-MAR-90 C2001  S1001                                        
+O3002      1900.1 03-OCT-90 C2007  S1004                                        
+O3005     5160.45 04-OCT-90 C2003  S1002                                        
+O3006     1098.16 10-MAR-90 C2008  S1007                                        
+O3009     1713.23 10-APR-90 C2002  S1003                                        
+O3007       75.75 10-APR-90 C2004  S1002                                        
+O3008        4723 10-MAY-90 C2006  S1001                                        
+O3010     1309.95 10-MAY-90 C2004  S1002                                        
+O3011     9891.88 10-JUN-90 C2006  S1001                                        
+
+10 rows selected.
+
+SQL> ---FUNCTIONS---
+SQL> ---Display sum of amt,average of orders.---
+SQL> 
+SQL> SELECT SUM(AMT),AVG(AMT)
+  2  FROM "ORDER";
+
+  SUM(AMT)   AVG(AMT)                                                           
+---------- ----------                                                           
+   26658.4    2665.84                                                           
+
+SQL> 
+SQL> ---To count the numbers of salesmen without duplication in the orders tables.---
+SQL> 
+SQL> SELECT COUNT(*),DISTINCT SNUM
+  2  FROM "ORDER";
+SELECT COUNT(*),DISTINCT SNUM
+                *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> SELECT COUNT(DISTINCT SNUM)
+  2  FROM "ORDER";
+
+COUNT(DISTINCTSNUM)                                                             
+-------------------                                                             
+                  5                                                             
+
+SQL> ---Count the rating of customers (with NULL and without NULL).---
+SQL> 
+SQL> SELECT COUNT(RATING)
+  2  FROM CUSTOMER;
+
+COUNT(RATING)                                                                   
+-------------                                                                   
+            7                                                                   
+
+SQL> ---Find the largest order taken by each salesperson---
+SQL> SELECT * FROM SALESMAN;
+
+SNUM   SNAME                CITY                  COMM                          
+------ -------------------- --------------- ----------                          
+S1001  PIYUSH               LONDON                 .12                          
+S1002  NIRAJ                SAN JOSE               .13                          
+S1003  MITI                 LONDON                 .11                          
+S1004  RAJESH               BARCELONA              .15                          
+S1005  HARESH               NEW YORK                .1                          
+S1006  RAM                  BOMBAY                  .1                          
+S1007  NEHAL                DELHI                  .09                          
+
+7 rows selected.
+
+SQL> SELECT * FROM "ORDER";
+
+ONUM          AMT ODATE     CNUM   SNUM                                         
+------ ---------- --------- ------ ------                                       
+O3001       18.69 10-MAR-90 C2008  S1007                                        
+O3003      767.19 10-MAR-90 C2001  S1001                                        
+O3002      1900.1 03-OCT-90 C2007  S1004                                        
+O3005     5160.45 04-OCT-90 C2003  S1002                                        
+O3006     1098.16 10-MAR-90 C2008  S1007                                        
+O3009     1713.23 10-APR-90 C2002  S1003                                        
+O3007       75.75 10-APR-90 C2004  S1002                                        
+O3008        4723 10-MAY-90 C2006  S1001                                        
+O3010     1309.95 10-MAY-90 C2004  S1002                                        
+O3011     9891.88 10-JUN-90 C2006  S1001                                        
+
+10 rows selected.
+
+SQL> SELECT SNUM,MAX(AMT)
+  2  FROM "ORDER"
+  3  GROUP BY SNUM;
+
+SNUM     MAX(AMT)                                                               
+------ ----------                                                               
+S1007     1098.16                                                               
+S1001     9891.88                                                               
+S1002     5160.45                                                               
+S1003     1713.23                                                               
+S1004      1900.1                                                               
+
+SQL> ---Find the largest order taken by each salesperson on each date---
+SQL> 
+SQL> SELECT SNUM,ODATE,MAX(AMT)
+  2  FROM "ORDER"
+  3  GROUP BY SNUM,ODATE;
+
+SNUM   ODATE       MAX(AMT)                                                     
+------ --------- ----------                                                     
+S1004  03-OCT-90     1900.1                                                     
+S1002  10-MAY-90    1309.95                                                     
+S1007  10-MAR-90    1098.16                                                     
+S1002  10-APR-90      75.75                                                     
+S1002  04-OCT-90    5160.45                                                     
+S1001  10-JUN-90    9891.88                                                     
+S1001  10-MAR-90     767.19                                                     
+S1003  10-APR-90    1713.23                                                     
+S1001  10-MAY-90       4723                                                     
+
+9 rows selected.
+
+SQL> 
+SQL> ---Find out which day had the higher total amount ordered.---
+SQL> SELECT TO_CHAR(ODATE,'FMDAY') AS DAY ,SUM(AMT)
+  2  FROM "ORDER";
+SELECT TO_CHAR(ODATE,'FMDAY') AS DAY ,SUM(AMT)
+               *
+ERROR at line 1:
+ORA-00937: not a single-group group function 
+
+
+SQL> SELECT TO_CHAR('ODATE','FMDAY') AS DAY ,SUM(AMT)
+  2  FROM "ORDER";
+SELECT TO_CHAR('ODATE','FMDAY') AS DAY ,SUM(AMT)
+               *
+ERROR at line 1:
+ORA-01722: invalid number 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT TO_CHAR('ODATE','DDD') AS DAY ,SUM(AMT)
+  2* FROM "ORDER"
+SQL> /
+SELECT TO_CHAR('ODATE','DDD') AS DAY ,SUM(AMT)
+               *
+ERROR at line 1:
+ORA-01722: invalid number 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT TO_CHAR(ODATE,'DDD') AS DAY ,SUM(AMT)
+  2* FROM "ORDER"
+SQL> /
+SELECT TO_CHAR(ODATE,'DDD') AS DAY ,SUM(AMT)
+               *
+ERROR at line 1:
+ORA-00937: not a single-group group function 
+
+
+SQL> /
+SELECT TO_CHAR(ODATE,'DDD') AS DAY ,SUM(AMT)
+               *
+ERROR at line 1:
+ORA-00937: not a single-group group function 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT TO_CHAR(SYSDATE,'DDD') AS DAY ,SUM(AMT)
+  2* FROM "ORDER"
+SQL> /
+
+DAY   SUM(AMT)                                                                  
+--- ----------                                                                  
+345    26658.4                                                                  
+
+SQL> SELECT * FROM "ORDER";
+
+ONUM          AMT ODATE     CNUM   SNUM                                         
+------ ---------- --------- ------ ------                                       
+O3001       18.69 10-MAR-90 C2008  S1007                                        
+O3003      767.19 10-MAR-90 C2001  S1001                                        
+O3002      1900.1 03-OCT-90 C2007  S1004                                        
+O3005     5160.45 04-OCT-90 C2003  S1002                                        
+O3006     1098.16 10-MAR-90 C2008  S1007                                        
+O3009     1713.23 10-APR-90 C2002  S1003                                        
+O3007       75.75 10-APR-90 C2004  S1002                                        
+O3008        4723 10-MAY-90 C2006  S1001                                        
+O3010     1309.95 10-MAY-90 C2004  S1002                                        
+O3011     9891.88 10-JUN-90 C2006  S1001                                        
+
+10 rows selected.
+
+SQL> SELECT ODATE,SUM(AMT)
+  2  FROM "ORDER"
+  3  GROUP BY ODATE;
+
+ODATE       SUM(AMT)                                                            
+--------- ----------                                                            
+10-MAR-90    1884.04                                                            
+04-OCT-90    5160.45                                                            
+10-APR-90    1788.98                                                            
+03-OCT-90     1900.1                                                            
+10-JUN-90    9891.88                                                            
+10-MAY-90    6032.95                                                            
+
+6 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ODATE,SUM(AMT)
+  2  FROM "ORDER"
+  3  GROUP BY ODATE
+  4* ORDER BY AMT DESC
+SQL> /
+ORDER BY AMT DESC
+         *
+ERROR at line 4:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> SELECT ODATE,SUM(AMT)
+  2  FROM "ORDER"
+  3  GROUP BY ODATE
+  4  ORDER BY AMT DESC;
+ORDER BY AMT DESC
+         *
+ERROR at line 4:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> ---Write a query that counts all orders for October 3rd.---
+SQL> SELECT * FROM "ORDER";
+
+ONUM          AMT ODATE     CNUM   SNUM                                         
+------ ---------- --------- ------ ------                                       
+O3001       18.69 10-MAR-90 C2008  S1007                                        
+O3003      767.19 10-MAR-90 C2001  S1001                                        
+O3002      1900.1 03-OCT-90 C2007  S1004                                        
+O3005     5160.45 04-OCT-90 C2003  S1002                                        
+O3006     1098.16 10-MAR-90 C2008  S1007                                        
+O3009     1713.23 10-APR-90 C2002  S1003                                        
+O3007       75.75 10-APR-90 C2004  S1002                                        
+O3008        4723 10-MAY-90 C2006  S1001                                        
+O3010     1309.95 10-MAY-90 C2004  S1002                                        
+O3011     9891.88 10-JUN-90 C2006  S1001                                        
+
+10 rows selected.
+
+SQL> SELECT COUNT(ODATE)
+  2  FROM "ORDER"
+  3  WHERE ODATE = '03-OCT-90';
+
+COUNT(ODATE)                                                                    
+------------                                                                    
+           1                                                                    
+
+SQL> ---Write a query that counts the number of different non-NULL city in the customer table---
+SQL> 
+SQL> SELECT COUNT(CITY)
+  2  FROM CUSTOMER
+  3  WHERE CITY IS NOT NULL;
+
+COUNT(CITY)                                                                     
+-----------                                                                     
+          7                                                                     
+
+SQL> 
+SQL> ---Write a query that selects the first customer in alphabetical order whose name begin with ‘G’.---
+SQL> SELECT CNUM,CNAME
+  2  FROM CUSTOMER
+  3  WHERE CNAME LIKE 'G%'
+  4  ORDER BY CNUM;
+
+CNUM   CNAME                                                                    
+------ --------------------                                                     
+C2002  GEETA                                                                    
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT CNUM,CNAME
+  2  FROM CUSTOMER
+  3  WHERE CNAME LIKE 'G%'
+  4  AND ROWNUM = 1
+  5* ORDER BY CNUM
+SQL> /
+
+CNUM   CNAME                                                                    
+------ --------------------                                                     
+C2002  GEETA                                                                    
+
+SQL> ---write a query that selects each customers smallest order.---
+SQL> 
+SQL> SELECT MIN(AMT)
+  2  FROM EMP
+  3  ORDER BY AMT ASC;
+ORDER BY AMT ASC
+         *
+ERROR at line 3:
+ORA-00904: "AMT": invalid identifier 
+
+
+SQL> SELECT MIN(AMT)
+  2  FROM "ORDER";
+
+  MIN(AMT)                                                                      
+----------                                                                      
+     18.69                                                                      
+
+SQL> ---Write a query that selects the highest rating in each city---
+SQL> SELECT * FROM CUSTOMER;
+
+CNUM   CNAME                CITY                RATING SNUM                     
+------ -------------------- --------------- ---------- ------                   
+C2001  HARDIK               LONDON                 100 S1001                    
+C2002  GEETA                ROME                   200 S1003                    
+C2003  KAVISH               SAN JOSE               200 S1002                    
+C2004  DHRUV                BERLIN                 300 S1002                    
+C2005  PRATHAM              LONDON                 100 S1001                    
+C2006  VYOMESH              SAN JOSE               300 S1007                    
+C2007  KIRIT                ROME                   100 S1004                    
+
+7 rows selected.
+
+SQL> SELECT MAX(RATING)
+  2  FROM CUSTOMER;
+
+MAX(RATING)                                                                     
+-----------                                                                     
+        300                                                                     
+
+SQL> SELECT CITY,MAX(RATING)
+  2  FROM CUSTOMER
+  3  GROUP BY CITY;
+
+CITY            MAX(RATING)                                                     
+--------------- -----------                                                     
+LONDON                  100                                                     
+SAN JOSE                300                                                     
+BERLIN                  300                                                     
+ROME                    200                                                     
+
+SQL> ---Write a query that counts the number of salesmen registering orders for each day(if a salesperson has more than one order on a given day , he or she should be counted only once)---
+SQL> 
+SQL> SELECT * FROM SALESMAN;
+
+SNUM   SNAME                CITY                  COMM                          
+------ -------------------- --------------- ----------                          
+S1001  PIYUSH               LONDON                 .12                          
+S1002  NIRAJ                SAN JOSE               .13                          
+S1003  MITI                 LONDON                 .11                          
+S1004  RAJESH               BARCELONA              .15                          
+S1005  HARESH               NEW YORK                .1                          
+S1006  RAM                  BOMBAY                  .1                          
+S1007  NEHAL                DELHI                  .09                          
+
+7 rows selected.
+
+SQL> SELECT * FROM "ORDER";
+
+ONUM          AMT ODATE     CNUM   SNUM                                         
+------ ---------- --------- ------ ------                                       
+O3001       18.69 10-MAR-90 C2008  S1007                                        
+O3003      767.19 10-MAR-90 C2001  S1001                                        
+O3002      1900.1 03-OCT-90 C2007  S1004                                        
+O3005     5160.45 04-OCT-90 C2003  S1002                                        
+O3006     1098.16 10-MAR-90 C2008  S1007                                        
+O3009     1713.23 10-APR-90 C2002  S1003                                        
+O3007       75.75 10-APR-90 C2004  S1002                                        
+O3008        4723 10-MAY-90 C2006  S1001                                        
+O3010     1309.95 10-MAY-90 C2004  S1002                                        
+O3011     9891.88 10-JUN-90 C2006  S1001                                        
+
+10 rows selected.
+
+SQL> SELECT ODATE,COUNT(DISTINCT SNO)
+  2  FROM "ORDER"
+  3  GROUP BY ODATE
+  4  ORDER BY ODATE;
+SELECT ODATE,COUNT(DISTINCT SNO)
+                            *
+ERROR at line 1:
+ORA-00904: "SNO": invalid identifier 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ODATE,COUNT(DISTINCT SNUM)
+  2  FROM "ORDER"
+  3  GROUP BY ODATE
+  4* ORDER BY ODATE
+SQL> /
+
+ODATE     COUNT(DISTINCTSNUM)                                                   
+--------- -------------------                                                   
+10-MAR-90                   2                                                   
+10-APR-90                   2                                                   
+10-MAY-90                   2                                                   
+10-JUN-90                   1                                                   
+03-OCT-90                   1                                                   
+04-OCT-90                   1                                                   
+
+6 rows selected.
+
+SQL> ---Display all the information in descending orders(use column CNUM).---
+SQL> 
+SQL> SELECT *
+  2  FROM "ORDER"
+  3  ORDER BY CNUM DESC;
+
+ONUM          AMT ODATE     CNUM   SNUM                                         
+------ ---------- --------- ------ ------                                       
+O3001       18.69 10-MAR-90 C2008  S1007                                        
+O3006     1098.16 10-MAR-90 C2008  S1007                                        
+O3002      1900.1 03-OCT-90 C2007  S1004                                        
+O3011     9891.88 10-JUN-90 C2006  S1001                                        
+O3008        4723 10-MAY-90 C2006  S1001                                        
+O3007       75.75 10-APR-90 C2004  S1002                                        
+O3010     1309.95 10-MAY-90 C2004  S1002                                        
+O3005     5160.45 04-OCT-90 C2003  S1002                                        
+O3009     1713.23 10-APR-90 C2002  S1003                                        
+O3003      767.19 10-MAR-90 C2001  S1001                                        
+
+10 rows selected.
+
+SQL> ---Display all the information in descending orders(use column CNUM,AMT).---
+SQL> 
+SQL> SELECT *
+  2  FROM "ORDER"
+  3  ORDER BY AMT;
+
+ONUM          AMT ODATE     CNUM   SNUM                                         
+------ ---------- --------- ------ ------                                       
+O3001       18.69 10-MAR-90 C2008  S1007                                        
+O3007       75.75 10-APR-90 C2004  S1002                                        
+O3003      767.19 10-MAR-90 C2001  S1001                                        
+O3006     1098.16 10-MAR-90 C2008  S1007                                        
+O3010     1309.95 10-MAY-90 C2004  S1002                                        
+O3009     1713.23 10-APR-90 C2002  S1003                                        
+O3002      1900.1 03-OCT-90 C2007  S1004                                        
+O3008        4723 10-MAY-90 C2006  S1001                                        
+O3005     5160.45 04-OCT-90 C2003  S1002                                        
+O3011     9891.88 10-JUN-90 C2006  S1001                                        
+
+10 rows selected.
+
+SQL> ---Display sname and comm. From salesmen in descending order(in place of column name use column number).---
+SQL> 
+SQL> SELECT SNAME,COMM
+  2  FROM SALESMAN
+  3  ORDER BY CNUM DESC;
+ORDER BY CNUM DESC
+         *
+ERROR at line 3:
+ORA-00904: "CNUM": invalid identifier 
+
+
+SQL> SELECT SNAME,COMM
+  2  FROM SALESMAN
+  3  ORDER BY SNUM DESC;
+
+SNAME                      COMM                                                 
+-------------------- ----------                                                 
+NEHAL                       .09                                                 
+RAM                          .1                                                 
+HARESH                       .1                                                 
+RAJESH                      .15                                                 
+MITI                        .11                                                 
+NIRAJ                       .13                                                 
+PIYUSH                      .12                                                 
+
+7 rows selected.
+
+SQL> ---Assume each salesperson has a 0.12 commission. Write a query on the orders table that will produce the order number,the salesperson number and the amount of the salesperson’s commission for that order---
+SQL> 
+SQL> SELECT * FROM "ORDER";
+
+ONUM          AMT ODATE     CNUM   SNUM                                         
+------ ---------- --------- ------ ------                                       
+O3001       18.69 10-MAR-90 C2008  S1007                                        
+O3003      767.19 10-MAR-90 C2001  S1001                                        
+O3002      1900.1 03-OCT-90 C2007  S1004                                        
+O3005     5160.45 04-OCT-90 C2003  S1002                                        
+O3006     1098.16 10-MAR-90 C2008  S1007                                        
+O3009     1713.23 10-APR-90 C2002  S1003                                        
+O3007       75.75 10-APR-90 C2004  S1002                                        
+O3008        4723 10-MAY-90 C2006  S1001                                        
+O3010     1309.95 10-MAY-90 C2004  S1002                                        
+O3011     9891.88 10-JUN-90 C2006  S1001                                        
+
+10 rows selected.
+
+SQL> SELECT ONUM,SNUM,AMT+0.12 AS COMM
+  2  FROM "ORDER";
+
+ONUM   SNUM         COMM                                                        
+------ ------ ----------                                                        
+O3001  S1007       18.81                                                        
+O3003  S1001      767.31                                                        
+O3002  S1004     1900.22                                                        
+O3005  S1002     5160.57                                                        
+O3006  S1007     1098.28                                                        
+O3009  S1003     1713.35                                                        
+O3007  S1002       75.87                                                        
+O3008  S1001     4723.12                                                        
+O3010  S1002     1310.07                                                        
+O3011  S1001        9892                                                        
+
+10 rows selected.
+
+SQL> ---Write a query that lists customers in descending order of rating. Output the rating field first, followed by the customer’s name and number---
+SQL> 
+SQL> SELECT * FROM CUSTOMER;
+
+CNUM   CNAME                CITY                RATING SNUM                     
+------ -------------------- --------------- ---------- ------                   
+C2001  HARDIK               LONDON                 100 S1001                    
+C2002  GEETA                ROME                   200 S1003                    
+C2003  KAVISH               SAN JOSE               200 S1002                    
+C2004  DHRUV                BERLIN                 300 S1002                    
+C2005  PRATHAM              LONDON                 100 S1001                    
+C2006  VYOMESH              SAN JOSE               300 S1007                    
+C2007  KIRIT                ROME                   100 S1004                    
+
+7 rows selected.
+
+SQL> SELECT RATING,CNAME,CNUM
+  2  FROM CUSTOMER
+  3  ORDER BY RATING DESC;
+
+    RATING CNAME                CNUM                                            
+---------- -------------------- ------                                          
+       300 DHRUV                C2004                                           
+       300 VYOMESH              C2006                                           
+       200 KAVISH               C2003                                           
+       200 GEETA                C2002                                           
+       100 KIRIT                C2007                                           
+       100 PRATHAM              C2005                                           
+       100 HARDIK               C2001                                           
+
+7 rows selected.
+
+SQL> ---Write a query that totals the orders for each day and places the results in descending order.---
+SQL> 
+SQL> SELECT * FROM "ORDER";
+
+ONUM          AMT ODATE     CNUM   SNUM                                         
+------ ---------- --------- ------ ------                                       
+O3001       18.69 10-MAR-90 C2008  S1007                                        
+O3003      767.19 10-MAR-90 C2001  S1001                                        
+O3002      1900.1 03-OCT-90 C2007  S1004                                        
+O3005     5160.45 04-OCT-90 C2003  S1002                                        
+O3006     1098.16 10-MAR-90 C2008  S1007                                        
+O3009     1713.23 10-APR-90 C2002  S1003                                        
+O3007       75.75 10-APR-90 C2004  S1002                                        
+O3008        4723 10-MAY-90 C2006  S1001                                        
+O3010     1309.95 10-MAY-90 C2004  S1002                                        
+O3011     9891.88 10-JUN-90 C2006  S1001                                        
+
+10 rows selected.
+
+SQL> SELECT ODATE,SUM(ONUM)
+  2  FROM "ORDER"
+  3  GROUP BY ODATE
+  4  ORDER BY ONUM DESC;
+ORDER BY ONUM DESC
+         *
+ERROR at line 4:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> SELECT ODATE,COUNT(ONUM)
+  2  FROM "ORDER"
+  3  GROUP BY ODATE
+  4  
+SQL>  SELECT ODATE,COUNT(ONUM) AS ORDER_COUNT
+  2  
+SQL> SELECT ODATE,COUNT(ONUM) AS ORDER_COUNT
+  2  FROM "ORDER"
+  3  GROUP BY ODATE
+  4  ORDER BY ORDER_COUNT DESC;
+
+ODATE     ORDER_COUNT                                                           
+--------- -----------                                                           
+10-MAR-90           3                                                           
+10-APR-90           2                                                           
+10-MAY-90           2                                                           
+03-OCT-90           1                                                           
+10-JUN-90           1                                                           
+04-OCT-90           1                                                           
+
+6 rows selected.
+
+SQL> --AFTER GIVING ALIAS NAME TO COLUMN ONUM I GET OUTPUT FINALLY--
+SQL> 
+SQL> ---JOIN---
+SQL> ---Show the names of all customers matched with the salesmen serving them.---
+SQL> 
+SQL> SELECT CNAME
+  2  FROM SALESMAN INNER JOIN CUSTOMER
+  3  ON SALESMAN.SNUM = CUSTOMER.S_NUM
+  4  ;
+ON SALESMAN.SNUM = CUSTOMER.S_NUM
+                   *
+ERROR at line 3:
+ORA-00904: "CUSTOMER"."S_NUM": invalid identifier 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT CNAME
+  2  FROM SALESMAN INNER JOIN CUSTOMER
+  3* ON SALESMAN.SNUM = CUSTOMER.SNUM
+  4  /
+
+CNAME                                                                           
+--------------------                                                            
+HARDIK                                                                          
+GEETA                                                                           
+KAVISH                                                                          
+DHRUV                                                                           
+PRATHAM                                                                         
+VYOMESH                                                                         
+KIRIT                                                                           
+
+7 rows selected.
+
+SQL> --- I GOT ERROR HERE BECAUSE I TYPED(S_NUM)---
+SQL> 
+SQL> ---List all salesmen who are living in same city without duplicate rows.---
+SQL> 
+SQL> ---Write a query that lists each order number followed by the name of the customer who made the order---
+SQL> 
+SQL> SELECT * FROM ORDER;
+SELECT * FROM ORDER
+              *
+ERROR at line 1:
+ORA-00903: invalid table name 
+
+
+SQL> SELECT * FROM "ORDER";
+
+ONUM          AMT ODATE     CNUM   SNUM                                         
+------ ---------- --------- ------ ------                                       
+O3001       18.69 10-MAR-90 C2008  S1007                                        
+O3003      767.19 10-MAR-90 C2001  S1001                                        
+O3002      1900.1 03-OCT-90 C2007  S1004                                        
+O3005     5160.45 04-OCT-90 C2003  S1002                                        
+O3006     1098.16 10-MAR-90 C2008  S1007                                        
+O3009     1713.23 10-APR-90 C2002  S1003                                        
+O3007       75.75 10-APR-90 C2004  S1002                                        
+O3008        4723 10-MAY-90 C2006  S1001                                        
+O3010     1309.95 10-MAY-90 C2004  S1002                                        
+O3011     9891.88 10-JUN-90 C2006  S1001                                        
+
+10 rows selected.
+
+SQL> SPOOL OFF;
